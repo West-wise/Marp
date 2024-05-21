@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/android-arp-64</file>
+        <file>assets/interface-list-64</file>
+    </qresource>
+</RCC>
