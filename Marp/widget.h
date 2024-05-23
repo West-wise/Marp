@@ -62,8 +62,8 @@ private:
     Ui::Widget *ui;
 
     bool packet_mode;
-    QString target_ip, sender_ip;
-    QString dev;
+    QString dev,target_ip, sender_ip;
+    QString interface_list, arp_file;
     QString destinationDir;
     QList<QProcess*> processList;
 };
