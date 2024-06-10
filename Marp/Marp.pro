@@ -31,6 +31,10 @@ android {
     PROCESS_PATH = $$PWD/bin
     deployment.files += $${PROCESS_PATH}/android-arp-64
     deployment.files += $${PROCESS_PATH}/interface-list-64
+    deployment.files += $${PROCESS_PATH}/myIp-64
+    deployment.files += $${PROCESS_PATH}/scan-64
+    deployment.files += $${PROCESS_PATH}/img/antenna.png
+    deployment.files += $${PROCESS_PATH}/img/antenna_stop.png
     deployment.path = /assets
     INSTALLS += deployment
 }

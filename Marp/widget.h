@@ -8,6 +8,9 @@
 #include <QComboBox>
 #include <QFile>
 #include <QStandardPaths>
+#include <QScreen>
+#include <QStandardItemModel>
+#include <QTableView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,14 +23,10 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
-    Widget(const QString file1, const QString file2, QWidget *parent = nullptr);
+    Widget(const QString file1, const QString file2, const QString file3, const QString file4, QWidget *parent = nullptr);
     ~Widget();
 
 private slots:
-
-    void press_start();
-
-    void press_stop();
 
     void killProcess(QProcess *process);
 
@@ -37,34 +36,44 @@ private slots:
 
     void on_cb_iflist_activated(int index);
 
-    void on_txt_sender_editingFinished();
-
-    void on_txt_target_editingFinished();
-
-    void on_btn_send_clicked();
-
-    bool check_address_text_box();
-
-    void on_btn_stop_clicked();
-
     void handleProcessError(QProcess::ProcessError error);
+
+    void handleScanProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
+
+    void handleScanProcessOutput();
 
     void killAllProcess();
 
-    void on_btn_clearlog_clicked();
+    void get_ip_info(QString ifname);
+
+    void on_btn_scan_toggled(bool checked);
+
+    void setupTableView();
+
+    void startScanProcess();
+
+    void adjustTableColumns();
+
+    void send_arp(const QString sender_ip);
+
 
 private:
     //function
     void append_interface_list();
     bool copyFileFromAssets(const QString fileName, const QString dir, QFile::Permissions permissions);
+    bool copyImgFileFromAssets(QString fileName, QString dir, QFile::Permissions permissions);
 
 private:
     Ui::Widget *ui;
+    QStandardItemModel *model;
 
     bool packet_mode;
-    QString dev,target_ip, sender_ip;
-    QString interface_list, arp_file;
-    QString destinationDir;
+    QString dev,gatewayIp, myIp, myMac;
+    QString interface_list, arp_file, get_ip_info_file, scan_file;
+    QString destinationDir, imgDir;
+    QProcess *scan_process;
     QList<QProcess*> processList;
+
+    QMap<QPushButton*, QProcess*> processMap;
 };
 #endif // WIDGET_H

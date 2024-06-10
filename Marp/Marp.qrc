@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>assets/android-arp-64</file>
         <file>assets/interface-list-64</file>
+        <file>assets/myIp-64</file>
+        <file>assets/scan-64</file>
+        <file>assets/img/antenna.png</file>
+        <file>assets/img/antenna_stop.png</file>
     </qresource>
 </RCC>
